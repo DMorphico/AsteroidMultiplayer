@@ -8,7 +8,9 @@ public class Nave : MonoBehaviour
     public Rigidbody2D rb;
     public float movementSpeed = 5f;
     public float rotationSpeed = 150f;
-    float rotation; 
+    float rotation;
+
+    public GameObject tiro;
 
     void Start()
     {
@@ -33,5 +35,11 @@ public class Nave : MonoBehaviour
         }
         rotation += rotationDir * Time.smoothDeltaTime * rotationSpeed;
         transform.localEulerAngles = new Vector3(0f, 0f, rotation);
+
+        //Atirar com a barra de espaço
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(tiro, this.transform.position + (transform.up * 0.5f), this.transform.rotation);
+        }
     }
 }
