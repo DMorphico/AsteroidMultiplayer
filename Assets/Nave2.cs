@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class Nave : MonoBehaviour
+public class Nave2 : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float movementSpeed = 5f;
@@ -19,27 +19,27 @@ public class Nave : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("s"))
+        if (Input.GetKey("down"))
             rb.AddForce(((Vector2)transform.up * -1 * movementSpeed) - rb.velocity, ForceMode2D.Force);
-        else if (Input.GetKey("w"))
+        else if (Input.GetKey("up"))
             rb.AddForce(((Vector2)transform.up * movementSpeed) - rb.velocity, ForceMode2D.Force);
     }
     // Update is called once per frame
     void Update()
     {
         float rotationDir = 0f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey("left"))
         {
             rotationDir = 1f;
-        } else if (Input.GetKey(KeyCode.D))
+        } else if (Input.GetKey("right"))
         {
             rotationDir = -1f;
         }
         rotation += rotationDir * Time.smoothDeltaTime * rotationSpeed;
         transform.localEulerAngles = new Vector3(0f, 0f, rotation);
 
-        //Atirar com a barra de espaço
-        if (Input.GetKeyDown(KeyCode.Space))
+        //Atirar com num0
+        if (Input.GetKeyDown("[0]"))
         {
             Instantiate(tiro, this.transform.position + (transform.up * 0.5f), this.transform.rotation);
         }
